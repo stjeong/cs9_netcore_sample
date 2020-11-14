@@ -61,7 +61,7 @@ class Program
         cl.Run((_, _) => 5);
         cl.Run(delegate (string _, int _) { return 0; });
     }
-}
+    }
 
 public delegate int RunDelegate(string name, int time);
 
@@ -69,7 +69,7 @@ public class Class1
 {
     void M(int _)
     {
-    }
+}
 
     public void Run(RunDelegate runnable)
     {
