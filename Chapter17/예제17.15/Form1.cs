@@ -1,5 +1,5 @@
 ﻿
-#define USE_FUNCTION_POINTER2
+#define USE_FUNCTION_POINTER
 
 using System;
 using System.Runtime.CompilerServices;
@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
 
 #if USE_FUNCTION_POINTER
         [DllImport("user32.dll", ExactSpelling = true)]
-        unsafe static extern IntPtr SetTimer(IntPtr hWnd, IntPtr nIDEvent, uint uElapse, delegate* unmanaged<IntPtr, uint, IntPtr, uint, void> lpTimerFunc);
+        unsafe static extern IntPtr SetTimer(IntPtr hWnd, IntPtr nIDEvent, uint uElapse, delegate* unmanaged[Stdcall]<IntPtr, uint, IntPtr, uint, void> lpTimerFunc);
 #else
         [DllImport("user32.dll", ExactSpelling = true)]
         static extern IntPtr SetTimer(IntPtr hWnd, IntPtr nIDEvent, uint uElapse, TimerProc lpTimerFunc);
@@ -59,15 +59,3 @@ namespace WindowsFormsApp1
 
     }
 }
-
-#if !NET5_0
-namespace System.Runtime.InteropServices
-{
-    [AttributeUsage(AttributeTargets.Method, Inherited = false)]
-    public sealed class UnmanagedCallersOnlyAttribute : Attribute
-    {
-        public Type[] CallConvs;
-        public string EntryPoint;
-    }
-}
-#endif

@@ -9,7 +9,7 @@ class Program
     {
     }
 
-    // C# 8.0 이하 - 컴파일 오류
+    // C# 8.0 컴파일 오류
     // Error CS8627 A nullable type parameter must be known to be a value type or non-nullable reference type
     static void CreateArray<T>(int n)
     {
@@ -76,7 +76,7 @@ public class Base2
     }
 }
 
-public class Derived2 : Base
+public class Derived2 : Base2
 {
     public override void M<T>(T? t)
     {
